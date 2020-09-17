@@ -1,10 +1,16 @@
 import asyncio
 import discord
+import os
 import time
 import threading
 from collections import defaultdict
 from discord.ext import commands
-from secrets import token
+
+# get token from environment vars or secrets file
+if 'token' not in os.environ:
+  from secrets import token
+else:
+  token = os.environ['token']
 
 bot = commands.Bot(command_prefix='!')
 
